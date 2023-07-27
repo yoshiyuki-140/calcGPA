@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="ja">
+    <style>
+        .subject-table {
+            width: 100%;
+            text-align: center;
+            border: 2px solid black;
+            /* border-collapse: collapse; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top-title">
+        <h2>GPA算出アプリ</h2>
+    </div>
+    <div>
+        <div>
+            <h3>設定</h3>
+        </div>
+        <div>
+            <p>
+                科目数：<input type="text" id="input-total-subjects" value="1"><br>
+                <button onclick="updateTable()">UpdateTable</button>
+            </p>
+        </div>
+    </div>
+    <div class="contents">
+        <table class="table-subject">
+            <tr>
+                <th>科目</th>
+                <th>評語</th>
+                <th>単位数</th>
+            </tr>
+            <tr>
+                <td><input type="text" class="subject" value="算数"></td>
+                <td><input type="text" class="score" value="S"></td>
+                <td><input type="text" class="credit" value="2"></td>
+            </tr>
+        </table>
+        <button onclick="clacGPA()">計算</button>
+    </div>
+    <div class="output">
+        <p>
+            GPA: <span id="gpa"></span>
+        </p>
+    </div>
+    <script>
+        function updateTable() {
+            let totalSubjects = document.getElementById("input-total-subjects").value;
+            let tableInstance = document.getElementById("table-subject");
+        }
+        function clacGPA() {
+        }
+    </script>
+</body>
+
+</html>
