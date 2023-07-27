@@ -1,7 +1,9 @@
 var GPADataContole = new class {
-    // constructor() {
-    //     this.tableInfo = {}
-    // }
+    constructor() {
+        this.scoreInfo = { "S": 4, "A": 3, "B": 2, "C": 1, "R": 0 };
+        // this.tableInfo = { "subjects": [], "score": [], "credit": [] };
+        this.tableInfo = [];
+    }
     // storeTableInfo() {
     //     while (document.getElementById("table-subject")) {
     //         this.tableInfo[""]
@@ -10,6 +12,7 @@ var GPADataContole = new class {
     updateTable() {
         var totalSubjects = document.getElementById("input-total-subjects").value;
         var table = document.getElementById("table-subject");
+        this.storeData();
         this.initTable(table); // コンテンツの初期化
 
 
@@ -47,7 +50,19 @@ var GPADataContole = new class {
             parentElement.removeChild(parentElement.firstChild);
         }
     }
+
+    storeData() {
+        let table = document.getElementById("table-subject");
+        let trElements = table.querySelectorAll("tr");
+        let tdElements = table.querySelectorAll("td");
+
+        for (let i = 0; i < trElements.length; i++) {
+            this.tableInfo.push({
+                "subject": tdElements.item(i).querySelector('input').value,
+                "score": tdElements.item(i + 1).querySelector('input').value,
+                "credit": tdElements.item(i + 2).querySelector('input').value
+            })
+        }
+    }
 }
 
-function clacGPA() {
-}
