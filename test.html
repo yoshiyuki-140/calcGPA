@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <!-- 例として、以下のようなHTMLを用意しておきます。table要素にはIDを付与しておきます。 -->
+    <table id="myTable">
+        <!-- 既存のtr要素やtd要素がある場合はここに含めておきます -->
+    </table>
+
+    <script>
+        // table要素をIDを使って取得します
+        let table = document.getElementById("myTable");
+
+        // 新しいtr要素を作成します
+        let newRow = document.createElement("tr");
+
+        // 3つの新しいtd要素を作成し、それぞれにinput要素を追加します
+        for (let i = 0; i < 3; i++) {
+            let newTd = document.createElement("td");
+            let newInput = document.createElement("input");
+            newInput.type = "text";
+
+            // 各input要素に適切なクラスと初期値を設定します
+            if (i === 0) {
+                newInput.className = "subject";
+                // newInput.value = "算数";
+            } else if (i === 1) {
+                newInput.className = "score";
+                // newInput.value = "S";
+            } else if (i === 2) {
+                newInput.className = "credit";
+                // newInput.value = "2";
+            }
+
+            // td要素にinput要素を追加します
+            newTd.appendChild(newInput);
+
+            // tr要素にtd要素を追加します
+            newRow.appendChild(newTd);
+        }
+
+        // 最終的に作成したtr要素をtable要素に追加します
+        table.appendChild(newRow);
+    </script>
+
+</body>
+
+</html>
