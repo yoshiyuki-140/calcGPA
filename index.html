@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="ja">
 
 <head>
     <meta charset="UTF-8">
@@ -54,7 +54,38 @@
         function updateTable() {
             let totalSubjects = document.getElementById("input-total-subjects").value;
             let tableInstance = document.getElementById("table-subject");
+
+
+            for (let i = 0; i < totalSubjects; i++) {
+
+                let newRow = tableInstance.insertCell("tr");
+
+                let td_cell_subject = document.createElement("td");
+                let td_cell_score = document.createElement("td");
+                let td_cell_creadit = document.createElement("td");
+
+                let input_cell_subject = document.createElement("input");
+                let input_cell_score = document.createElement("input");
+                let input_cell_credit = document.createElement("input");
+
+                input_cell_subject.classList.add("subject");
+                input_cell_score.classList.add("score");
+                input_cell_credit.classList.add("credit");
+
+                td_cell_subject.appendChild(input_cell_subject);
+                td_cell_score.appendChild(input_cell_score);
+                td_cell_creadit.appendChild(input_cell_subject);
+
+                newRow.insertCell(td_cell_subject)
+                newRow.insertCell(td_cell_score)
+                newRow.insertCell(td_cell_creadit)
+                // newRow.appendChild(td_cell_subject);
+                // newRow.appendChild(td_cell_score);
+                // newRow.appendChild(td_cell_creadit);
+                tableInstance.appendChild(newRow);
+            }
         }
+
         function clacGPA() {
         }
     </script>
