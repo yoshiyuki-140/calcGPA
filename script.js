@@ -35,16 +35,16 @@ var GPADataContole = new class {
                 case 0:
                     var newInput = document.createElement("input");
                     newInput.className = "subject";
-                    newInput.value = "Math";
+                    newInput.value = "";
                     newInput.type = "text"
                     newTd.appendChild(newInput);
                     break;
                 case 1:
                     var newSelect = document.createElement("select");
-                    for (let i = 0; i < this.scoreInfo.length; ++i) {
+                    for (let i = 0; i < Scores.length; ++i) {
                         let newOption = document.createElement("option");
-                        newOption.value = Scores[i];
-                        newOption.innerHTML = Scores[i];
+                        newOption.value = Scores[i];    // これはvalueだけど一応評語の文字入れる
+                        newOption.text = Scores[i];
                         newSelect.appendChild(newOption);
                     }
                     newSelect.className = "score";
@@ -52,10 +52,10 @@ var GPADataContole = new class {
                     break;
                 case 2:
                     var newSelect = document.createElement("select");
-                    for (let i = 0; i < 4; ++i) {
+                    for (let i = 1; i <= 4; ++i) {
                         let newOption = document.createElement("option");
                         newOption.value = i;
-                        newOption.innerHTML = i;
+                        newOption.text = i;
                         newSelect.appendChild(newOption);
                     }
                     newSelect.className = "credit";
@@ -82,7 +82,7 @@ var GPADataContole = new class {
                     newTh.textContent = "評語"
                     break;
                 case 2:
-                    newTh.textContent = "単位数"
+                    newTh.textContent = "単位"
                     break;
             }
             newTr.appendChild(newTh);
@@ -144,11 +144,6 @@ var GPADataContole = new class {
     }
 }
 
-window.onload = function () {
-    GPADataContole.setTableColumn();
-    GPADataContole.addRow();
-}
-
 
 // htmlから呼び出し用のラッパーコード
 
@@ -158,3 +153,22 @@ function updateTable() {
 function getGpa() {
     document.getElementById("gpa").textContent = GPADataContole.getGPA();
 }
+
+// 普通に関数として定義したかった奴ら
+function initTotalSubjectsVariable() {
+    // 7 * 5 = 35 だから最大値を35にした、一週間にとれる最大数(たぶん)
+    let Select = document.getElementById("select-total-subjects");
+    for (let i = 1; i < 35; ++i) {
+        let newOption = document.createElement("option");
+        newOption.value = i;
+        newOption.text = i;
+        Select.appendChild(newOption);
+    }
+}
+
+window.onload = function () {
+    GPADataContole.setTableColumn();
+    GPADataContole.addRow();
+    initTotalSubjectsVariable();
+}
+

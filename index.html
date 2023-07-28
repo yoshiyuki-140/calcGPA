@@ -4,14 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <style>
-        .subject-table {
-            width: 100%;
-            text-align: center;
-            border: 2px solid black;
-            /* border-collapse: collapse; */
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <script>
         // let table = document.getElementById("table-subject")
@@ -31,7 +24,11 @@
         </div>
         <div>
             <p>
-                科目数：<input type="text" id="input-total-subjects" value="1"><br>
+                <!--
+                    科目数：<input type="text" id="input-total-subjects" value="1"><br>
+                -->
+                科目数：<select id="select-total-subjects"></select>
+                <br>
                 <button onclick="updateTable()">UpdateTable</button>
             </p>
         </div>
