@@ -132,7 +132,7 @@ var GPADataContole = new class {
         // にあるGPA計算方法の表の分子部分の計算
         let result = 0;
         for (let i = 0; i < this.tableInfo.length; ++i) {
-            result += this.scoreInfo[this.tableInfo[i][1]] * this.tableInfo[i][2];
+            result += this.scoreInfo[this.tableInfo[i][1]] * parseInt(this.tableInfo[i][2], 10);
         }
         return result;
     }
@@ -141,7 +141,7 @@ var GPADataContole = new class {
         // にあるGPA計算方法の表の分母部分の計算
         let result = 0;
         for (let i = 0; i < this.tableInfo.length; ++i) {
-            result += this.tableInfo[i][2];   // creditの値を取得
+            result += parseInt(this.tableInfo[i][2], 10);   // creditの値を取得
         }
         return result;
     }
