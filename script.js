@@ -10,6 +10,13 @@ var GPADataContole = new class {
     //         this.tableInfo[""]
     //     }
     // }
+    initTable(parentElement) {
+        // 引数に指定された親要素のすべての要素を消去する
+        this.setTableColumn
+        while (parentElement.firstChild) {
+            parentElement.removeChild(parentElement.firstChild);
+        }
+    }
     updateTable() {
         var totalSubjects = document.getElementById("input-total-subjects").value;
         var table = document.getElementById("table-subject");
@@ -73,13 +80,7 @@ var GPADataContole = new class {
         // 対象のtableタグに上で設定したtr要素を追加する
         document.getElementById("table-subject").appendChild(newTr);
     }
-    initTable(parentElement) {
-        // 引数に指定された親要素のすべての要素を消去する
-        this.setTableColumn
-        while (parentElement.firstChild) {
-            parentElement.removeChild(parentElement.firstChild);
-        }
-    }
+
 
     storeData() {
         // この関数は未完成sqerySelectorでエラーが出る.
@@ -146,7 +147,6 @@ var GPADataContole = new class {
         return result;
     }
 }
-
 
 window.onload = function () {
     GPADataContole.setTableColumn();
