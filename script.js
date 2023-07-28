@@ -98,10 +98,67 @@ var GPADataContole = new class {
         }
     }
 
+    // 取得したデータを計算時に使いやすいように配列にまとめる
+    updatetableInfo() {
+        this.tableInfo.splice(0);   // 要素0以上の要素をすべて削除
+        let table = document.getElementById("table-subject");
+        // let tableRowLength = table.rows.length;
+        for (let i = 1; i < table.rows.length; ++i) {
+            // this.tableInfo.push(["subject","score","scregit"])
+            let tdArray = Array.from(table.rows[i].querySelectorAll("td"));
+            // this.tableInfo.push([tdArray[0].querySelector("input").value, tdArray[1].querySelector("input").value, tdArray[2].querySelector("input").value]);
+            let inputsInfoArray = [];
+            for (let j = 0; j < 3; ++j) {
+                inputsInfoArray.push(Array.from(tdArray[j].querySelectorAll("input"))[0].value)
+            }
+            this.tableInfo.push(inputsInfoArray);
+        }
+    }
+
+    getGPA() {
+        this.updatetableInfo(); // 計算前に計算用のデータを作るこれでthis.tableInfoの内容が更新される
+
+
+
+        // これが最終的なGPA
+        let gpa = this.sum_Of_ProductsPointAndCredit() / this.sumTotalCreadits();
+        return gpa;
+    }
+    sum_Of_ProductsPointAndCredit() {
+        // scoreに入るのは,"S"とか"A"とか
+        // 戻り値はpoint
+        // 指定したscore以外の値を入れた時の例外とか入れるならここかな
+        // https://www.kanazawa-it.ac.jp/campus_guide/2021/chapter_3/list_3/page_2.html
+        // にあるGPA計算方法の表の分子部分の計算
+        let result = 0;
+        for (let i = 0; i < this.tableInfo.length; ++i) {
+            result += this.scoreInfo[this.tableInfo[i][1]] * this.tableInfo[i][2];
+        }
+        return result;
+    }
+    sumTotalCreadits() {
+        // https://www.kanazawa-it.ac.jp/campus_guide/2021/chapter_3/list_3/page_2.html
+        // にあるGPA計算方法の表の分母部分の計算
+        let result = 0;
+        for (let i = 0; i < this.tableInfo.length; ++i) {
+            result += this.tableInfo[i][2];   // creditの値を取得
+        }
+        return result;
+    }
 }
 
 
 window.onload = function () {
     GPADataContole.setTableColumn();
     GPADataContole.addRow();
+}
+
+
+// htmlから呼び出し用のラッパーコード
+
+function updateTable() {
+    GPADataContole.updateTable();
+}
+function getGpa() {
+    document.getElementById("gpa").textContent = GPADataContole.getGPA();
 }
