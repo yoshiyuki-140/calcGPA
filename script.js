@@ -5,11 +5,6 @@ var GPADataContole = new class {
         // this.tableInfo = { "subjects": [], "score": [], "credit": [] };
         this.tableInfo = [];
     }
-    // storeTableInfo() {
-    //     while (document.getElementById("table-subject")) {
-    //         this.tableInfo[""]
-    //     }
-    // }
     initTable(parentElement) {
         // 引数に指定された親要素のすべての要素を消去する
         this.setTableColumn
@@ -32,27 +27,42 @@ var GPADataContole = new class {
     addRow() {
         var newRow = document.createElement("tr");
         newRow.className = "tr-content";
+        let Scores = Object.keys(this.scoreInfo);
 
         for (let j = 0; j < 3; j++) {
             var newTd = document.createElement("td");
-            var newInput = document.createElement("input");
             switch (j) {
                 case 0:
+                    var newInput = document.createElement("input");
                     newInput.className = "subject";
                     newInput.value = "Math";
+                    newInput.type = "text"
+                    newTd.appendChild(newInput);
                     break;
                 case 1:
-                    newInput.className = "score";
-                    newInput.value = "S";
+                    var newSelect = document.createElement("select");
+                    for (let i = 0; i < this.scoreInfo.length; ++i) {
+                        let newOption = document.createElement("option");
+                        newOption.value = Scores[i];
+                        newOption.innerHTML = Scores[i];
+                        newSelect.appendChild(newOption);
+                    }
+                    newSelect.className = "score";
+                    newTd.appendChild(newSelect);
                     break;
                 case 2:
-                    newInput.className = "credit";
-                    newInput.value = 2;
+                    var newSelect = document.createElement("select");
+                    for (let i = 0; i < 4; ++i) {
+                        let newOption = document.createElement("option");
+                        newOption.value = i;
+                        newOption.innerHTML = i;
+                        newSelect.appendChild(newOption);
+                    }
+                    newSelect.className = "credit";
+                    newSelect.value = 2;
+                    newTd.appendChild(newSelect);
                     break;
             }
-
-            newInput.type = "text"
-            newTd.appendChild(newInput);
             newRow.appendChild(newTd);
         }
         document.getElementById("table-subject").appendChild(newRow);
@@ -82,22 +92,6 @@ var GPADataContole = new class {
     }
 
 
-    storeData() {
-        // この関数は未完成sqerySelectorでエラーが出る.
-        // これは,th要素をonloadで初めに実装した時にth要素の子要素に対して,
-        // inputが実装されていないためだと思う.
-        let table = document.getElementById("table-subject");
-        let trElements = table.querySelectorAll("tr");
-        let tdElements = table.querySelectorAll("td");
-
-        for (let i = 0; i < trElements.length; i++) {
-            this.tableInfo.push({
-                "subject": tdElements.item(i).querySelector('input').value,
-                "score": tdElements.item(i + 1).querySelector('input').value,
-                "credit": tdElements.item(i + 2).querySelector('input').value
-            })
-        }
-    }
 
     // 取得したデータを計算時に使いやすいように配列にまとめる
     updatetableInfo() {
@@ -108,11 +102,13 @@ var GPADataContole = new class {
             // this.tableInfo.push(["subject","score","scregit"])
             let tdArray = Array.from(table.rows[i].querySelectorAll("td"));
             // this.tableInfo.push([tdArray[0].querySelector("input").value, tdArray[1].querySelector("input").value, tdArray[2].querySelector("input").value]);
-            let inputsInfoArray = [];
-            for (let j = 0; j < 3; ++j) {
-                inputsInfoArray.push(Array.from(tdArray[j].querySelectorAll("input"))[0].value)
-            }
-            this.tableInfo.push(inputsInfoArray);
+            let tdArrayInfo = [];
+
+            tdArrayInfo.push(Array.from(tdArray[0].querySelectorAll("input"))[0].value)
+            tdArrayInfo.push(Array.from(tdArray[1].querySelectorAll("select"))[0].value)
+            tdArrayInfo.push(Array.from(tdArray[2].querySelectorAll("select"))[0].value)
+
+            this.tableInfo.push(tdArrayInfo);
         }
     }
 
