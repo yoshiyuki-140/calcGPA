@@ -1,7 +1,7 @@
 
 var GPADataContole = new class {
     constructor() {
-        this.scoreInfo = { "S": 4, "A": 3, "B": 2, "C": 1, "R": 0 };
+        this.scoreInfo = { "S": 4, "A": 3, "B": 2, "C": 1, "Retake": 0 };
         // this.tableInfo = { "subjects": [], "score": [], "credit": [] };
         this.tableInfo = [];
     }
@@ -13,7 +13,7 @@ var GPADataContole = new class {
         }
     }
     updateTable() {
-        var totalSubjects = document.getElementById("input-total-subjects").value;
+        var totalSubjects = document.getElementById("select-total-subjects").value;
         var table = document.getElementById("table-subject");
         this.initTable(table); // コンテンツの初期化
         this.setTableColumn();
