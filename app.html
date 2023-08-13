@@ -3,38 +3,38 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <script src="script.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="all">
+  <div class="all">
 
-        <div class="contents">
-            <h2 id="top-title">GPA算出アプリ</h2>
-            <div class="config">
-                <h3>設定</h3>
-                <p>
-                    <!--
+    <div class="contents">
+      <h2 id="top-title">GPA算出アプリ</h2>
+      <div class="config">
+        <h3>設定</h3>
+        <p>
+          <!--
                     科目数：<input type="text" id="input-total-subjects" value="1"><br>
                     -->
-                    科目数：<select id="select-total-subjects"></select>
-                    <br>
-                    <button onclick="updateTable()">UpdateTable</button>
-                </p>
+          科目数：<select id="select-total-subjects"></select>
+          <br>
+          <button onclick="updateTable()">UpdateTable</button>
+        </p>
 
-                <table id="table-subject"></table>
-                <button onclick="getGpa()">計算</button>
-            </div>
+        <table id="table-subject"></table>
+        <button onclick="getGpa()">計算</button>
+      </div>
 
-            <div class="output">
-                <p>
-                    GPA: <span id="gpa"></span>
-                </p>
-            </div>
-        </div>
+      <div class="output">
+        <p>
+          GPA: <span id="gpa"></span>
+        </p>
+      </div>
     </div>
+  </div>
 </body>
 
 </html>
