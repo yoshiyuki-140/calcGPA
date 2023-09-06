@@ -1,6 +1,4 @@
 # GPA算出アプリ
 
-## 仕様
-
-### class
-- 
+# 概要
+web技術の基礎理解のためのhtml&css&javascriptの勉強用- 
